@@ -3,19 +3,18 @@ document.addEventListener('DOMContentLoaded', function() {
   const uploadedImage = document.getElementById('uploadedImage');
 
   mediaInput.addEventListener('change', function(event) {
-    const file = event.target.files[0]; // Get the first file from the selected files
+    const file = event.target.files[0]; 
     const reader = new FileReader();
 
     reader.onload = function(e) {
-      // Modifier la propriété CSS background-image de l'élément uploadedImage
       uploadedImage.style.backgroundImage = `url(${e.target.result})`;
-      uploadedImage.style.backgroundSize = 'cover'; // Optionnel: ajuster la taille de l'image au conteneur
-      uploadedImage.style.backgroundPosition = 'center'; // Optionnel: centrer l'image dans le conteneur
-      uploadedImage.style.backgroundColor = 'transparent'; // Changer la couleur de fond en transparent
+      uploadedImage.style.backgroundSize = 'cover'; 
+      uploadedImage.style.backgroundPosition = 'center'; 
+      uploadedImage.style.backgroundColor = 'transparent'; 
     };
 
     if (file) {
-      reader.readAsDataURL(file); // Convertir le fichier en URL de données (data URL)
+      reader.readAsDataURL(file); 
     }
   });
 });

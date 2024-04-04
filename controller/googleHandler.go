@@ -2,9 +2,9 @@ package controllers
 
 import (
 	"encoding/json"
+	"log"
 	// "fmt"
 	models "forum/model"
-	"log"
 	"net/http"
 
 	_ "github.com/mattn/go-sqlite3"
@@ -13,7 +13,7 @@ import (
 )
 
 var Usergmail struct {
-	Email    string `json:"email"`
+	Email string `json:"email"`
 }
 var (
 	oauthConfig      *oauth2.Config
@@ -39,7 +39,7 @@ func HandleGoogleCallback(w http.ResponseWriter, r *http.Request) {
 	code := r.FormValue("code")
 	token, err := oauthConfig.Exchange(r.Context(), code)
 	if err != nil {
-		log.Printf("Error exchanging code: %s", err)
+		log.Println("Error exchanging code: %s", err)
 		http.Redirect(w, r, "/", http.StatusTemporaryRedirect)
 		return
 	}
@@ -48,14 +48,14 @@ func HandleGoogleCallback(w http.ResponseWriter, r *http.Request) {
 	userInfo, err := client.Get("https://www.googleapis.com/oauth2/v3/userinfo")
 	println(userInfo)
 	if err != nil {
-		log.Printf("Error getting user info: %s", err)
+		log.Println("Error getting user info: %s", err)
 		http.Redirect(w, r, "/", http.StatusTemporaryRedirect)
 		return
 	}
 	defer userInfo.Body.Close()
 	err = json.NewDecoder(userInfo.Body).Decode(&Usergmail)
 	if err != nil {
-		log.Printf("Error parsing user info: %s", err)
+		log.Println("Error parsing user info: %s", err)
 		http.Redirect(w, r, "/", http.StatusTemporaryRedirect)
 		return
 	}

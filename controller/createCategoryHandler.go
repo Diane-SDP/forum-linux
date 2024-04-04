@@ -9,23 +9,24 @@ import (
 func CreateCategoryHandler(w http.ResponseWriter, r *http.Request) {
 	if r.URL.Path != "/createcategory" { // Si l'URL n'est pas la bonne
 		NotFound(w, r, http.StatusNotFound) // On appelle notre fonction NotFound
-		return                              // Et on arrête notre code ici !
+		return
 	}
 	tmpl, err := template.ParseFiles("./view/createCategory.html")
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
-	var data models.Data
+	var data models.DataProfil
 	cookie, err := r.Cookie("user")
 	if err != nil {
 		NotFound(w, r, http.StatusNotFound) // On appelle notre fonction NotFound
 		return
 	}
-	uuid := cookie.Value
-	data.CurrentUser = models.GetUser(models.GetIDFromUUID(uuid))
 
-	err = tmpl.Execute(w, nil)
+	id := models.GetIDFromUUID(cookie.Value)
+	data.User = models.GetUser(id)
+
+	err = tmpl.Execute(w, data)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 	}

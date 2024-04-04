@@ -34,8 +34,7 @@ func PostHandler(w http.ResponseWriter, r *http.Request) {
 	_, err = models.DB.Exec("INSERT INTO posts (title, content, idUser, idCategory, image, likes) VALUES (?, ?, ?, ?, ?, ?)", titleInput, contentInput, idUser, categoryInput, path, 0)
 	if err != nil {
 		http.Error(w, "Erreur lors de la publication du post", http.StatusInternalServerError)
-		log.Println(err)
-		return
+		panic(err)
 	}
 
 	http.Redirect(w, r, "/", http.StatusSeeOther)

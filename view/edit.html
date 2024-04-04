@@ -17,7 +17,7 @@
             <a href="/profil">
                 <p>MON PROFIL</p>
                 <div class="container-profil-img">
-                    <img src=".{{.Image}}">
+                    <img src=".{{.CurrentUser.Image}}">
                 </div>
             </a>
         </div>
@@ -30,27 +30,27 @@
         <form action="/save" method="post" enctype="multipart/form-data"  class="post">
             <div class="header-post">
                 <div class="user">
-                    <img src=".{{.Image}}">
-                    <p>{{.User.Pseudo}}</p>
+                    <img src=".{{.CurrentUser.Image}}">
+                    <p>{{.CurrentUser.Pseudo}}</p>
                 </div>
-                <h3>{{.Category.Title}}</h3>
+                <h3>{{.Post.Category.Title}}</h3>
             </div>
         
             <div class="form-post">
-                <input class="title-post" type="text" id="titleInput" name="titleInput" maxlength="35" required value="{{.Title}}" >
+                <input class="title-post" type="text" id="titleInput" name="titleInput" maxlength="35" required value="{{.Post.Title}}" >
                 <br>
-                <textarea class="text-post" type="text" id="contentInput" name="contentInput" required>{{.Content}}</textarea>
+                <textarea class="text-post" type="text" id="contentInput" name="contentInput" required>{{.Post.Content}}</textarea>
                 <div class="image-container">
                     <button id="removeImage" class="remove-image"><img src="../Assets/img/signe-de-la-croix.png"></button>
-                    <img id="postImage" src=".{{.Image}}" alt="Image du post">
+                    <img id="postImage" src=".{{.Post.Image}}" alt="Image du post">
                 </div>
             </div>
             <div class="footer-post">  
-                <input type="file" id="mediaInput" name="mediaInput" class="none" accept="image/*" value="{{.Image}}">
+                <input type="file" id="mediaInput" name="mediaInput" class="none" accept="image/*" value="{{.Post.Image}}">
                 <label for="mediaInput" class="img-post">
                     <img src="../Assets/img/Rectangle 12.png" alt="Placeholder Image">
                 </label>
-                <input type="hidden" name="id" value="{{.Id}}">
+                <input type="hidden" name="id" value="{{.Post.Id}}">
                 <button type="submit" id="submit" class="glow-on-hover"><img src="../Assets/img/Rectangle 9.png"></button>
             </div>
         </form>
@@ -59,7 +59,6 @@
     <script src="../Assets/js/uppertextarea.js"></script>
     <script src="../Assets/js/changecolorCreatedTemplates.js"></script>
     <script src="../Assets/js/fullscreenimg.js"></script>
-
 
 </body>
 </html>

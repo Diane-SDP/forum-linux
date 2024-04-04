@@ -20,7 +20,7 @@ func main() {
 		image TEXT DEFAULT './Assets/img/user.png',
         email TEXT,
 		uuid TEXT,
-		googleAccount INTEGER
+		googleAccount INTEGER DEFAULT 0
     )`)
 	if err != nil {
 		panic(err)
@@ -65,7 +65,7 @@ func main() {
 		id INTEGER PRIMARY KEY AUTOINCREMENT,
         idUser INTEGER,
         idPost INTEGER,
-		commentaire TEXT
+		content TEXT
     )`)
 
 	if err != nil {
@@ -83,6 +83,7 @@ func main() {
 	http.HandleFunc("/deco", controllers.DisconnectHandler)
 	http.HandleFunc("/topic/", controllers.TopicHandler)
 	http.HandleFunc("/edit/", controllers.EditHandler)
+	http.HandleFunc("/editCom/", controllers.EditComHandler)
 	http.HandleFunc("/createcategory", controllers.CreateCategoryHandler)
 	http.HandleFunc("/post", controllers.PostHandler)
 	http.HandleFunc("/connection", controllers.ConnectionHandler)
@@ -90,11 +91,15 @@ func main() {
 	http.HandleFunc("/login", controllers.LoginHandler)
 	http.HandleFunc("/profil/", controllers.ProfilHandler)
 	http.HandleFunc("/changeprofil", controllers.ChangeProfilHandler)
-	http.HandleFunc("/commentaire/", controllers.CommentaireHandler)
-	http.HandleFunc("/createcommentaire/", controllers.CreateCommentHandler)
+	http.HandleFunc("/comments/", controllers.CommentHandler)
+	http.HandleFunc("/createcomment/", controllers.CreateCommentHandler)
 	http.HandleFunc("/save", controllers.SaveHandler)
+	http.HandleFunc("/saveCom", controllers.SaveComHandler)
 	http.HandleFunc("/logingoogle", controllers.GoogleLoginHandler)
 	http.HandleFunc("/callback", controllers.HandleGoogleCallback)
+	http.HandleFunc("/deleteImage/", controllers.DeleteImageHandler)
+	http.HandleFunc("/delete", controllers.DeletePostHandler)
+	http.HandleFunc("/deleteCom", controllers.DeleteComHandler)
 
 	panic(http.ListenAndServe("localhost:8080", nil))
 

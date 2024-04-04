@@ -28,11 +28,11 @@ func SignupHandler(w http.ResponseWriter, r *http.Request) {
 
 	if exist {
 		if msg == "Username déjà utilisé" {
-			log.Println("Nom d'utilisateur déjà utilisé")
+			log.Printf("Nom d'utilisateur déjà utilisé")
 			http.Redirect(w, r, "/connection?error=badnameSignUp", http.StatusSeeOther)
 			return
 		}
-		log.Println("Email déjà utilisé")
+		log.Printf("Email déjà utilisé")
 		http.Redirect(w, r, "/connection?error=badmailSignUp", http.StatusSeeOther)
 		return
 	}

@@ -27,7 +27,7 @@ func LikedPostHandler(w http.ResponseWriter, r *http.Request) {
 		data.IsMe = false
 		data.IsConnected = false
 		NotFound(w, r, http.StatusNotFound) // On appelle notre fonction NotFound
-		return 
+		return
 	} else {
 		id = models.GetIDFromUUID(cookie.Value)
 		data.IsConnected = true
@@ -49,6 +49,11 @@ func LikedPostHandler(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 	data.Posts = likedPosts
+	for i := range data.Posts {
+		if data.Posts[i].User == data.CurrentUser {
+			data.Posts[i].IsMine = true
+		}
+	}
 	tmpl, err := template.ParseFiles("./view/profil.html")
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)

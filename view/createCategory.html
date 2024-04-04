@@ -14,10 +14,10 @@
             <a href="/deco">
                 <p>SE DECONNECTER</p>
             </a>
-            <a href="/profil/{{.CurrentUser.Id}}">
+            <a href="/profil/{{.User.Id}}">
                 <p>MON PROFIL</p>
                 <div class="container-profil-img">
-                    <img src=".{{.CurrentUser.Image}}">
+                    <img src=".{{.User.Image}}">
                 </div>
             </a>
         </div>
@@ -25,8 +25,6 @@
 
     <div class="menuboard" id="menuboard">
         <div class="logoJOC"><a href="/"><img src="../Assets/img/burn.png"></a></div>
-
-        
     </div>
 
     <form action="/postcategory" method="post" enctype="multipart/form-data" class="category">

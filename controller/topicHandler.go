@@ -24,15 +24,7 @@ func TopicHandler(w http.ResponseWriter, r *http.Request) {
 		return                              // Et on arrête notre code ici !
 	}
 
-	type DataTopic struct {
-		Posts       []models.Post
-		Current     models.Category
-		Categories  []models.Category
-		IsConnected bool
-		CurrentUser models.User
-	}
-
-	var data DataTopic
+	var data models.DataTopic
 	id, _ := strconv.Atoi(idstr)
 	data.Current = models.GetCategory(id)
 	data.Posts = models.GetTopicPosts(id)

@@ -26,7 +26,7 @@ func CreatePostHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	uuid := cookie.Value
-	
+
 	id := models.GetIDFromUUID(uuid)
 	tmpl, err := template.ParseFiles("./view/create.html")
 

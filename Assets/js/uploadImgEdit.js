@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
         reader.onload = function(e) {
             uploadedImage.src = e.target.result;
             uploadedImage.style.display = 'block';
-            removeImageBtn.style.display = 'flex'; // Afficher le bouton "Supprimer"
+            removeImageBtn.style.display = 'flex'; 
         };
         reader.readAsDataURL(file);
     });
@@ -21,13 +21,31 @@ document.addEventListener('DOMContentLoaded', function() {
         removeImageBtn.style.display = 'none';
     }
     
-    // supprimer l'image
+   
     removeImageBtn.addEventListener('click', function(e) {
-      e.preventDefault();
-        uploadedImage.src = ''; // Efface le contenu de l'image
-        uploadedImage.style.display = 'none'; // Cache l'image
-        removeImageBtn.style.display = 'none'; // Cache la croix
-        mediaInput.value = ''; // Effacer la valeur de l'input de type file
+        e.preventDefault();
+        var path = window.location.href;
+        var parts = path.split('/');
+        var id = parts.pop();
+        console.log(id)
+        uploadedImage.src = ''; 
+        uploadedImage.style.display = 'none'; 
+        removeImageBtn.style.display = 'none'; 
+        mediaInput.value = ''; 
+         
+        fetch('/deleteImage/' + id, {
+            method: 'POST', 
+            headers: {
+                'Content-Type': 'application/json' 
+            },
+        })
+        .then(response => response.text())
+        .then(data => {
+            console.log(data); 
+        })
+        .catch(error => {
+            console.error('Erreur lors de la suppression de l\'image:', error);
+        });
     });
   });
   

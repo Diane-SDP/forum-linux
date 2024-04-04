@@ -130,10 +130,11 @@ i.fa-search {
     flex-direction: row;
     align-items: center;
     font-size: 1.1em;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     text-align: left;
     text-transform: uppercase;
     height: fit-content;
+    padding: 4px;
 }
 
 .header {
@@ -162,7 +163,13 @@ i.fa-search {
     text-decoration: none;
     color: black;
     font-size: 0.9em;
+    padding: 0px 5px;
 }
+
+.login:hover {
+    background-color: rgba(0, 0, 0, 0.068);
+    border-radius: 10px;
+  }
 
 .create-categories {
     background-color: white;
@@ -199,7 +206,13 @@ i.fa-search {
     text-decoration: none;
     color: black;
     margin-left: 15px;
+    padding: 0px 5px;
 }
+
+.loginsucess a:hover {
+    background-color: rgba(0, 0, 0, 0.068);
+    border-radius: 10px;
+  }
 
 .container-profil-img {
     width: 35px;
@@ -321,14 +334,11 @@ i.fa-search {
 .more-post a {
     color: black;
     text-decoration: none;
-    width: 17px;
-    height: 17px;
-    margin-left: 12px;
+    margin-right: 12px;
 }
 
 .more-post img {
     width: 17px;
-    border-radius: 100%;
 }
 
 .header-post {
@@ -494,3 +504,80 @@ i.fa-search {
 .yellow-bg:after {
     background-color: #EBC842; 
 }
+
+.dropdown {
+    position: relative;
+    height:17px;
+    width: 17px;
+  }
+  
+  .dropbtn {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    height:17px;
+    width: 17px;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1000;
+    padding: 0px;
+    margin: 0px;
+  }
+  
+  .dropdown-content a {
+    color: black;
+    padding: 5px 8px;
+    font-size: 14px;
+    margin: 0%;
+    text-decoration: none;
+    display: flex;
+    width: 70px;
+    height: fit-content;
+  }
+  
+  .dropdown-content form:hover {
+    background-color: #f1f1f1;
+    width: 70px;
+  }
+
+  .dropdown-content form {
+    color: black;
+    padding: 5px 8px;
+    font-size: 14px;
+    margin: 0%;
+    text-decoration: none;
+    width: 70px;
+    height: fit-content;
+  }
+
+  .dropdown-content form button {
+    border: none;
+    background-color: transparent;
+    outline: none;
+    padding: 0%;
+  }
+  
+  .dropdown-content a:hover {
+    background-color: #f1f1f1;
+    width: 70px;
+  }
+  
+  .dropdown:hover .dropdown-content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .categories:hover {
+    background-color: rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+  }
+ 

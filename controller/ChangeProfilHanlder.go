@@ -12,22 +12,17 @@ import (
 func ChangeProfilHandler(w http.ResponseWriter, r *http.Request) {
 	if r.URL.Path != "/changeprofil" { // Si l'URL n'est pas la bonne
 		NotFound(w, r, http.StatusNotFound) // On appelle notre fonction NotFound
-		return                              // Et on arrête notre code ici !
+		return                              
 	}
-	var id int
-
 	cookie, err := r.Cookie("user")
 	if err != nil {
 		log.Printf("err")
 		NotFound(w, r, http.StatusNotFound)
 		return
-	} else {
-		id = models.GetIDFromUUID(cookie.Value)
 	}
+	id := models.GetIDFromUUID(cookie.Value)
 	newname := r.FormValue("changename")
-
 	var exists bool
-
 	erreur := models.DB.QueryRow("SELECT EXISTS(SELECT 1 FROM users WHERE username = ?)", newname).Scan(&exists)
 	if erreur != nil {
 		panic(erreur)
@@ -41,32 +36,40 @@ func ChangeProfilHandler(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 
-	var info models.User
-	newpsd := r.FormValue("changepsd")
-	vraipswd := r.FormValue("psd")
+	newpwd := r.FormValue("changepsd")
+	currentPWD := r.FormValue("psd")
 
-	prbl := models.DB.QueryRow("SELECT EXISTS(SELECT 1 FROM users WHERE password = ?)", newpsd).Scan(&exists)
+	prbl := models.DB.QueryRow("SELECT EXISTS(SELECT 1 FROM users WHERE password = ?)", newpwd).Scan(&exists)
 	if prbl != nil {
 		panic(prbl)
 	}
-	h := md5.New()
-	h.Write([]byte(vraipswd))
-	vraipswd = hex.EncodeToString(h.Sum(nil))
-	if vraipswd == info.Password {
-		if !exists {
-			if newpsd != "" {
-				h := md5.New()
-				h.Write([]byte(newpsd))
-				newpsd := hex.EncodeToString(h.Sum(nil))
-				_, err = models.DB.Exec("UPDATE users set password = ? where id = ?", newpsd, id)
-				if err != nil {
-					panic(err)
+
+	var info models.User
+	info = models.GetUser(id)
+	if currentPWD != "" {
+		h := md5.New()
+		h.Write([]byte(currentPWD))
+		currentPWD = hex.EncodeToString(h.Sum(nil))
+
+		if currentPWD == info.Password {
+			if !exists {
+				if newpwd != "" {
+					h := md5.New()
+					h.Write([]byte(newpwd))
+					newpwd = hex.EncodeToString(h.Sum(nil))
+					_, err = models.DB.Exec("UPDATE users set password = ? where id = ?", newpwd, id)
+					if err != nil {
+						panic(err)
+					}
 				}
 			}
+			http.Redirect(w, r, "/changeprofil?check=passwordchange", http.StatusSeeOther)
+		} else {
+			http.Redirect(w, r, "/changeprofil?error=badpassword", http.StatusSeeOther)
 		}
 	}
 
-	bio := r.FormValue("biographie")
+	bio := r.FormValue("bio")
 	if bio != "" {
 		_, err = models.DB.Exec("UPDATE users SET bio = ? WHERE id = ?", bio, id)
 		if err != nil {

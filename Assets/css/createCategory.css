@@ -40,106 +40,6 @@ body::-webkit-scrollbar {
     width: 90px;
 }
 
-.search-container {
-    width: 20px;
-    min-height: 20px;
-    border-radius: 100px;
-    background-color: #ffffff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 6px;
-    margin: 15px auto;
-    margin-bottom: 0px;
-    gap: 2px;
-    cursor: pointer;
-    transition: width 500ms cubic-bezier(0.68, -0.55, 0.8, 1.55);
-    overflow: hidden;
-}
-
-.search-container.active {
-    width: 80%;
-    cursor: default;
-    padding: 6px;
-    background-color: rgb(255, 255, 255);
-}
- 
-.search-container i img{
-    width: 20px;
-    margin: 0%;
-}
-
-.search-container.active i img{
-    width: 20px;
-    margin: 0% ;
-}
-  
-.search-input {
-    display: none;
-    outline: none;
-    border: none;
-    width: 100%;
-    font-family: 'Nunito';
-    font-size: 15px;
-    background-color: transparent;
-}
-
-i.fa-times {
-    display: none;
-    margin:0;
-    cursor: pointer;
-}
-
-i.fa-search {
-    height: 20px;
-}
-
-.search-container.active > :is(i, input) {
-    display: flex;
-}
-
-.content-categories {
-    width: 70%;
-    display: flex;
-    flex-direction: column;
-    padding: 0%;
-    overflow:auto;
-    overflow-x: hidden;
-    margin-top: 20px;
-    height: 100%;
-}
-
-.content-categories::-webkit-scrollbar {
-    width: 1px;
-  }
-
-.content-categories a {
-    text-decoration: none;
-    color: black;
-}
-
-.categories img {
-    width: 23px;
-    height: 23px;
-    margin-right: 8px;
-    padding-top: 2px;
-}
-
-.categories {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    font-size: 1.1em;
-    margin-bottom: 20px;
-    text-align: left;
-    text-transform: uppercase;
-    height: fit-content;
-}
-
-.categories:last-child {
-    margin-bottom: 0px;
-}
-
 .header {
     margin-left: 28vh;
     width: 100%;
@@ -156,22 +56,6 @@ i.fa-search {
     font-weight: 400;
 }
 
-.create-categories {
-    background-color: white;
-    width: 130px;
-    min-height: 100px;
-    display: flex;
-    margin-top: 20px;
-    margin-bottom: 60px;
-    position: relative;
-    justify-content: center;
-    align-items: center;
-    border-radius: 10px;
-}
-
-.create-categories img {
-    width: 40px;
-}
 
 .loginsucess {
     display: flex;
@@ -187,7 +71,13 @@ i.fa-search {
     text-decoration: none;
     color: black;
     margin-left: 15px;
+    padding: 0px 5px;
 }
+
+.loginsucess a:hover {
+    background-color: rgba(0, 0, 0, 0.068);
+    border-radius: 10px;
+  }
 
 .container-profil-img {
     width: 35px;

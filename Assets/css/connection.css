@@ -25,6 +25,7 @@ body {
 .header h1 {
     font-size: 60px;
     font-weight: 400;
+	color: black;
 }
 
 .logoJOC img{
@@ -117,7 +118,6 @@ input {
 	top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-
 }
 
 .form-container {

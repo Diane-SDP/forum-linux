@@ -20,7 +20,7 @@
             <a href="/deco">
                 <p>SE DECONNECTER</p>
             </a>
-            <a href="/profil">
+            <a href="/profil/{{.CurrentUser.Id}}">
                 <p>MON PROFIL</p>
                 <div class="container-profil-img">
                     <img src=".{{.CurrentUser.Image}}">
@@ -58,13 +58,12 @@
         {{end}}
     </div>
 
-
     <div id="fullpage" onclick="this.style.display='none';"></div>
+
     <div class="post-container">
         {{$isconnected := .IsConnected}}
         {{ range .Posts }}
-        <section id="{{.Id}}">
-        <div class="post">
+        <section id="{{.Id}}" class="post">
             <div class="header-post">
                 <a class="user" href="/profil/{{.User.Id}}">
                     <div class="container-profil-img-post">
@@ -75,7 +74,16 @@
                 <div class="more-post">
                     <h3><a href="/topic/{{.Category.Id}}">{{ .Category.Title}}</a></h3>
                     {{if .IsMine}}
-                    <a href="/edit/{{.Id}}"><img src="../Assets/img/trois-points-plus-indicateur.png"></a>
+                    <div class="dropdown">
+                        <button class="dropbtn"><img src="../Assets/img/trois-points-plus-indicateur.png"></button>
+                        <div class="dropdown-content">
+                            <a href="/edit/{{.Id}}">Éditer</a>
+                            <form action="/delete" method="post">
+                                <input type="hidden" name="id" value="{{.Id}}">
+                                <button type="submit">Supprimer</button>
+                            </form>
+                        </div>
+                    </div>
                     {{end}}
                 </div>
             </div>
@@ -86,28 +94,25 @@
             </div>
             <div class="footer-post">
                 <div class="com-post">
-                    <a href="/commentaire/{{.Id}}"><img src="../Assets/img/Rectangle 14.png"></a>
+                    <a href="/comments/{{.Id}}"><img src="../Assets/img/Rectangle 14.png"></a>
                     <p>{{.Comment}}</p>
                 </div>
                 <div class="like-post">
-                    <!--<a class="upper"><img src="../Assets/img/dislike (3) 1.png"></a>
-                    <p>8</p>-->
-                        {{if $isconnected}}
-                        <button id="Likes{{.Id}}" value="{{.Id}}" name="likes" onclick="Like(this)">
-                            {{if .IsLiked}}
-                                <img src="../Assets/img/likes.png">
-                            {{else}}
-                                 <img src="../Assets/img/trending-topic 1.png">   
-                            {{end}}
-                        </button>
-                            <p id="nbLikes{{.Id}}">{{.Likes}}</p>
+                    {{if $isconnected}}
+                    <button id="Likes{{.Id}}" value="{{.Id}}" name="likes" onclick="Like(this)">
+                        {{if .IsLiked}}
+                            <img src="../Assets/img/likes.png">
                         {{else}}
-                            <a href="/connection"><img src="../Assets/img/trending-topic 1.png"></a>
-                            <p>{{.Likes}}</p>
+                             <img src="../Assets/img/trending-topic 1.png">   
                         {{end}}
+                    </button>
+                        <p id="nbLikes{{.Id}}">{{.Likes}}</p>
+                    {{else}}
+                        <a href="/connection"><img src="../Assets/img/trending-topic 1.png"></a>
+                        <p>{{.Likes}}</p>
+                    {{end}}
                 </div>
             </div>
-        </div>
         </section>
         {{ end }}
     </div>

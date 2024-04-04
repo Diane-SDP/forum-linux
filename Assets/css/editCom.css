@@ -91,175 +91,125 @@ body::-webkit-scrollbar {
     border-radius: 100px
 }
 
-.post {
-    position:fixed;
-    max-width: 800px;
-    display: flex;
+.com{
+    position: fixed;
+    width: 65vh;
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 35px;
+    margin-bottom:10px;
+    display:flex;
     flex-direction: column;
     justify-content: space-between;
-    width: 77vh;
-    height: fit-content;
-    margin-left: 130px;
-    background-color: white;
-    border: 3px solid black;
-    border-radius: 40px;
-    top: 50%;
+    top:50%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
 
-.header-post {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: fit-content;
-    margin: 15px 20px;
-    margin-bottom: 7px;
-}
-
-.user {
-    display: flex;
-    align-items: center;
-}
-
-.user p{
-    margin-left: 10px;
-    font-size: 17px;
-}
-
-.user img {
-    width: 35px;
-    height: 35px;
-    object-fit: cover;
-    border-radius: 100px
-}
-
-.categories-post {
+.form-com {
     position: relative;
-    width: 131px;
-    border-radius: 30px;
-    border: 1px solid black;
-    padding: 3px 7px;
-    font-size: 19px;
-    cursor: pointer;
+    margin: 0px 20px;
 }
 
-.form-post {
-    position: relative;
-    margin: 0px 25px;
-}
-
-.title-post {
-    width: 70%;
-    font-size: 22px;
-    margin-bottom: 10px;
-    border: none;
-    outline: none;
-    border-bottom: 1px solid black;
-    padding: 0%;
-}
-
-.title-post::placeholder {
-    color: rgba(0, 0, 0, 0.278);
-    font-size: 22px;
-}
-
-.text-post {
+.text-com{
     width: 100%;
     height: fit-content;
     max-height: 200px;
     resize : none;
     border: none;
     outline: none;
-    font-size: 16px;
+    font-size: 14px;
     padding: 0%;
-    padding-right: 10px;
+    padding-right: 5px;
 }
 
-.text-post::placeholder {
+.text-com::placeholder {
     color: rgba(0, 0, 0, 0.278);
     padding: 0%;
-    font-size: 16px;
+    font-size: 14px;
 }
 
-.text-post::-webkit-scrollbar {
-    width: 4px;
+.text-com::-webkit-scrollbar {
+    width: 3px;
   }
   
-  .text-post::-webkit-scrollbar-track {
+  .text-com::-webkit-scrollbar-track {
     background-color: #e4e4e4;
     border-radius: 100px;
   }
   
-  .text-post::-webkit-scrollbar-thumb {
-    background-color: #8e8e8e;
+  .text-com::-webkit-scrollbar-thumb {
+    background-color: black;
     border-radius: 100px;
   }
 
-.footer-post {
+  
+.footer-com {
     display: flex;
     align-items: center;
     justify-content: space-between;
     height: fit-content;
-    margin: 15px 20px;
-    margin-top: 5px;
+    margin: 10px 15px;
+    margin-top: 0px;
 }
 
-.img-post {
-    width: 45px;
-    height: 45px;
-    border-radius: 100%;
-    background-color: #cacaca;
+.more-com {
     display: flex;
     justify-content: center;
     align-items: center;
-    border: none;
-    cursor: pointer;
 }
 
-.img-post:hover {
-    background: #0000004f;
+.more-com a {
+    color: black;
+    text-decoration: none;
+    width: 17px;
+    height: 17px;
+    margin-left: 12px;
 }
 
-.img-post img {
-    width: 20px;
+.more-com img {
+    width: 17px;
 }
 
-.none {
-    display: none;
-}
-
-.image-container {
-    margin: 5px;
-}
-
-#uploadedImage {
-    display: none;
-    height: 12vh;
-    border-radius: 10px;
-}
-
-.remove-image {
-    width: 15px;
-    height: 15px;
+.header-com {
     display: flex;
     align-items: center;
-    justify-content: center;
-    border-radius: 100%;
-    background-color: red;
-    color: white;
-    display: none;
-    position: absolute;
-    border: none;
-    padding: 0px;
-    margin-top: -3px;
-    margin-left: -5px;
-    cursor: pointer;
+    justify-content: space-between;
+    height: fit-content;
+    margin: 10px 15px;
+    margin-bottom: 7px;
 }
 
-.remove-image img {
-    width: 12px;
+.user-com {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: black;
 }
+
+.user-com p{
+    margin-left: 10px;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.more-com h3 {
+    text-transform: capitalize;
+}
+
+.user-com img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 100px;
+}
+
+.container-profil-img-com {
+    width: 30px;
+    height: 30px;
+}
+
+
 
 .glow-on-hover {
     width: 120px;
@@ -309,6 +259,18 @@ body::-webkit-scrollbar {
     left: 0;
     top: 0;
     border-radius: 60px;
+}
+
+.text-post{
+    width: 100%;
+    height: fit-content;
+    max-height: 200px;
+    resize : none;
+    border: none;
+    outline: none;
+    font-size: 14px;
+    padding: 0%;
+    padding-right: 5px;
 }
 
 @keyframes glowing {

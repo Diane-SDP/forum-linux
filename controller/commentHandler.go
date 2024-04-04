@@ -8,16 +8,9 @@ import (
 	"strings"
 )
 
-func CommentaireHandler(w http.ResponseWriter, r *http.Request) {
-	type dataComment struct {
-		IdPost      int
-		CurrentUser models.User
-		Lescoms     []models.Comment
-		Post        models.Post
-		Categories  []models.Category
-		IsConnected bool
-	}
-	var data dataComment
+func CommentHandler(w http.ResponseWriter, r *http.Request) {
+
+	var data models.DataComment
 	var id int
 	cookie, err := r.Cookie("user")
 	if err != nil {
@@ -39,7 +32,7 @@ func CommentaireHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	data.IdPost = idint
-	data.Lescoms = models.GetComment(idint)
+	data.Lescoms = models.GetComments(idint)
 	data.Post = models.GetPost(idint)
 	if data.IsConnected {
 		data.CurrentUser = models.GetUser(id)
@@ -49,7 +42,11 @@ func CommentaireHandler(w http.ResponseWriter, r *http.Request) {
 	categories, _ := models.GetCategories()
 	data.Categories = categories
 
-	tmpl, err := template.ParseFiles("./view/commentaire.html")
+	for i := range data.Lescoms {
+		data.Lescoms[i].IsMine = (data.Lescoms[i].User.Id == id)
+	}
+
+	tmpl, err := template.ParseFiles("./view/comment.html")
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return

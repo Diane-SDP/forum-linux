@@ -21,8 +21,6 @@ func GetPosts() []Post {
 	rows, err := DB.Query("SELECT id, title, content, idUser, idCategory, image, likes FROM posts")
 	if err != nil {
 		panic(err)
-		print("GETPOSTS")
-		return nil
 	}
 	defer rows.Close()
 	var posts []Post
@@ -42,8 +40,6 @@ func GetPosts() []Post {
 		post.User = GetUser(idUser)
 		if err != nil {
 			panic(err)
-			print("GETPOSTS")
-			return nil
 		}
 		post.Image = pathImg
 		post.Likes = likes
@@ -87,8 +83,6 @@ func GetMyPosts(id int) []Post {
 	rows, err := DB.Query("SELECT id, title, content, idUser, idCategory, image, likes FROM posts WHERE idUser = ?", id)
 	if err != nil {
 		panic(err)
-		print("GETPOSTS")
-		return nil
 	}
 	defer rows.Close()
 	var posts []Post
@@ -102,8 +96,6 @@ func GetMyPosts(id int) []Post {
 		err := rows.Scan(&idpost, &post.Title, &post.Content, &idUser, &idCategory, &pathImg, &likes)
 		if err != nil {
 			panic(err)
-			print("GETPOSTS")
-			return nil
 		}
 		idCategoryINT, _ := strconv.Atoi(idCategory)
 		post.Category = GetCategory(idCategoryINT)
@@ -113,8 +105,6 @@ func GetMyPosts(id int) []Post {
 		post.Id = idpost
 		if err != nil {
 			panic(err)
-			print("GETPOSTS")
-			return nil
 		}
 		post.Comment = CountComment(post.Id)
 		posts = append(posts, post)

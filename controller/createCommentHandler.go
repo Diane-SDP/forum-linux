@@ -2,7 +2,6 @@ package controllers
 
 import (
 	models "forum/model"
-	"log"
 	"net/http"
 	"strings"
 )
@@ -16,14 +15,13 @@ func CreateCommentHandler(w http.ResponseWriter, r *http.Request) {
 	idUser := models.GetIDFromUUID(cookie.Value)
 	parts := strings.Split(r.URL.Path, "/")
 	idstr := parts[len(parts)-1]
-	commentaire := r.FormValue("commentInput")
+	comment := r.FormValue("commentInput")
 
-	_, err = models.DB.Exec("INSERT INTO comment (idUser, idPost, commentaire) VALUES (?, ?, ?)", idUser, idstr, commentaire)
+	_, err = models.DB.Exec("INSERT INTO comment (idUser, idPost, content) VALUES (?, ?, ?)", idUser, idstr, comment)
 	if err != nil {
 		http.Error(w, "Erreur lors de la publication du commentaire", http.StatusInternalServerError)
-		log.Println(err)
-		return
+		panic(err)
 	}
 
-	http.Redirect(w, r, "/commentaire/"+idstr, http.StatusSeeOther)
+	http.Redirect(w, r, "/comments/"+idstr, http.StatusSeeOther)
 }

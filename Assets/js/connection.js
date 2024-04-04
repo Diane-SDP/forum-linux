@@ -10,8 +10,6 @@ signInButton.addEventListener('click', () => {
 	container.classList.remove("right-panel-active");
 });
 
-
-// Fonction pour extraire la valeur d'un paramètre de requête
 function getQueryParam(param) {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
@@ -20,21 +18,20 @@ function getQueryParam(param) {
 
 const errorValue = getQueryParam('error');
 const usernameErrorDiv = document.getElementById('usernameError');
-const passwordErrorDiv = document.getElementById('passwordError'); // Sélection de la div
+const passwordErrorDiv = document.getElementById('passwordError'); 
 const usernameErrorSignDiv = document.getElementById('usernameErrorSignUp');
 const mailErrorDiv = document.getElementById('mailError');
 
 if (errorValue === 'badname') {
   console.log('Nom d\'utilisateur incorrect');
-  usernameErrorDiv.textContent = 'Nom d\'utilisateur incorrect'; // Ajout de texte dans la div
+  usernameErrorDiv.textContent = 'Nom d\'utilisateur incorrect'; 
   usernameErrorDiv.style.color = 'red';
-  usernameErrorDiv.style.fontSize = '11px'; // Modification de la couleur du texte
+  usernameErrorDiv.style.fontSize = '11px'; 
 } else if (errorValue === 'badpassword') {
   console.log('Mot de passe incorrect');
-  passwordErrorDiv.textContent = 'Mot de passe incorrect'; // Ajout de texte dans la div
+  passwordErrorDiv.textContent = 'Mot de passe incorrect'; 
   passwordErrorDiv.style.color = 'red';
-  passwordErrorDiv.style.fontSize = '11px'; // Modification de la couleur du texte
-  // Autres actions à entreprendre en cas de mot de passe incorrect
+  passwordErrorDiv.style.fontSize = '11px'; 
 } else if (errorValue === 'badnameSignUp') {
   console.log('Nom d\'utilisateur déjà utilisé');
   usernameErrorSignDiv.textContent = 'Nom d\'utilisateur déjà utilisé';
